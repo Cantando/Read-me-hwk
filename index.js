@@ -1,18 +1,10 @@
 const fs = require("fs");
-const path = require("path");
+// const path = require("path");
 const inquirer = require("inquirer");
-const generateMarkdown = require("../generateMarkdown");
+const generateMarkdown = require("./generateMarkdown");
 const axios = require("axios").default;
 
-// * Title
-//   * Description
-//   * Table of Contents
-//   * Installation
-//   * Usage
-//   * License
-//   * Contributing
-//   * Tests
-//   * Questions
+
 
 // array of questions for user
 const questions = [
@@ -26,19 +18,20 @@ const questions = [
         name: "description",
         message: "give a brief description of your project?"
     },
-    {type:"list",
-    name:"contact",
-    message:"what is your preference to be contacted ?",
-    choices:["by email",
-    " by cell",
-    "by mail" 
+    {
+        type: "list",
+        name: "contact",
+        message: "what is your preference to be contacted ?",
+        choices: ["by email",
+            " by cell",
+            "by mail"
 
-    ]
+        ]
 
     },
     {
         type: "input",
-        name: "github",
+        name: "username",
         message: "what is your github username?"
     },
 
@@ -55,50 +48,37 @@ const questions = [
 
     },
     {
-        type: "checkbox",
+        type: "rawlist",
         name: "technology",
         message: "what technology will you use?",
-        choices:[ "HTML",
-        "CSS",
-        "Javascript",
-        "ES6"
-
-
-        ]
-
-    },
-
-
+        choices: ["HTML","CSS","Javascript","ES6"]
+}
 ];
 
-// function to write README file
-// function writeToFile(fileName, data) {
-//     return fs.writeFileSync(path.join(process.cwd(), fileName), data);
 
-// }
+
 
 // function to initialize program
 function init() {
-    inquirer.prompt(questions).then((results) => {
-        axios.get("https://api.github.com/users/"+ results.username)
-        
-        .then(function(response){
-            results.html_url=response.data.html_url
-            results.avatar=response.data.avatar_url
-            fs.writeFile("READEME.md",generateMarkdown(results),function(err){
-                if (err) {
-                    return console.log(err);
-                    
-                }
-                return console.log(sucess);
-                
-            });
+    inquirer.prompt(questions).then((data) => {
+        axios.get("https://api.github.com/users/" + data.username)
+            .then(function (response) {
+                data.html_url = response.data.html_url
+                data.avatar = response.data.avatar_url
+                fs.writeFile("READEME.md", generateMarkdown(data), function (err) {
+                    if (err) {
+                        return console.log(err);
 
-        }).catch(function(err){
-            console.log(err);
-            
-        })
-        // writeToFile("README.md", generateMarkdown({ ...inquirerResponses }));
+                    }
+                    return console.log(success);
+
+                });
+
+            }).catch(function (err) {
+                console.log(err);
+
+            })
+        
     })
 }
 
