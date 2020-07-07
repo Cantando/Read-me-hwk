@@ -3,6 +3,7 @@ const path = require("path");
 const inquirer = require("inquirer");
 const generateMarkdown = require("../generateMarkdown");
 const axios = require("axios").default;
+
 // * Title
 //   * Description
 //   * Table of Contents
@@ -41,12 +42,12 @@ const questions = [
         message: "what is your github username?"
     },
 
-    // {
-    //     type: "input",
-    //     name: "email",
-    //     message: "what is your email?"
+    {
+        type: "input",
+        name: "email",
+        message: "what is your email?"
 
-    // },
+    },
     {
         type: "input",
         name: "url",
@@ -80,9 +81,23 @@ const questions = [
 function init() {
     inquirer.prompt(questions).then((results) => {
         axios.get("https://api.github.com/users/"+ results.username)
-      
         
+        .then(function(response){
+            results.html_url=response.data.html_url
+            results.avatar=response.data.avatar_url
+            fs.writeFile("READEME.md",generateMarkdown(results),function(err){
+                if (err) {
+                    return console.log(err);
+                    
+                }
+                return console.log(sucess);
+                
+            });
 
+        }).catch(function(err){
+            console.log(err);
+            
+        })
         // writeToFile("README.md", generateMarkdown({ ...inquirerResponses }));
     })
 }
