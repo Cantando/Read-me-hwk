@@ -1,0 +1,27 @@
+{
+  "name": "coolproject",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Myrna Cantando",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "inquirer": "^6.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cantando/Read-me-hwk.git"
+  },
+  "keywords": [
+    "follow",
+    "follow"
+  ],
+  "bugs": {
+    "url": "https://github.com/Cantando/Read-me-hwk/issues"
+  },
+  "homepage": "https://github.com/Cantando/Read-me-hwk#readme"
+}
