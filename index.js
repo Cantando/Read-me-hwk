@@ -70,7 +70,7 @@ function init() {
                         return console.log(err);
 
                     }
-                    return console.log(success);
+                    return console.log("success");
 
                 });
 

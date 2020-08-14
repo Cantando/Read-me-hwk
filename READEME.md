@@ -1,20 +1,20 @@
 
   https://github.com/Cantando
   ![My Github Profile Pic](https://avatars1.githubusercontent.com/u/65988365?v=4)
-  # cool
+  # Cool Read me
 
 
   ##Description
-  very cool
+  Read me generator
 
   ##Contact me
-  by mail
+  by email
   myrnacantando@gmail.com
   
   
   ## live demo
-  www.verycoolproject
+  https://github.com/Cantando
 
   ##Technologies
-  ES6
+  Javascript
 
